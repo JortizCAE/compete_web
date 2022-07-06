@@ -1,0 +1,32 @@
+@import '../../style/partials/variables';
+@import '../../style/partials/mixins';
+
+.profile {
+    @include dashboard-page;
+
+    &__intro {
+        margin-bottom: $base-padding * 2;
+
+        &-title {
+            margin: 0 0 8px 0;
+            color: $purple;
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        &-welcome {
+            color: $accent2;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+
+        @include tablet {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+}

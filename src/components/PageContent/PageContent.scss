@@ -1,0 +1,15 @@
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
+
+.page-content {
+  padding: $base-padding;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: #fffefb;
+
+  @include tablet {
+    padding: calc($base-padding * 2);
+  }
+
+  @include custom-scroll;
+}

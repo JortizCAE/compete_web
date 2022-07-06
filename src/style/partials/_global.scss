@@ -1,0 +1,68 @@
+@import './variables';
+@import './typography';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+* {
+    //border: 1px solid red;
+
+    &::-moz-selection {
+        color: $white;
+        background: $purple;
+    }
+      
+    &::selection {
+        color: $white;
+        background: $purple;
+    }
+}
+
+.App {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.icon {
+    color: $purple;
+
+    &:hover {
+        color: $secondary;
+        cursor: pointer;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.Toastify__toast-body {
+    padding: ($base-padding / 2) $base-padding !important;
+    gap: $base-padding / 1.5 !important;
+}
+
+.PhoneInput {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.PhoneInputInput {
+    flex: 1 1;
+    min-width: 0;
+    border-radius: 5px;
+    background-color: #F0EFFF;
+    padding: 16px 24px;
+    border: none;
+}

@@ -1,0 +1,23 @@
+@import "../../../../style/partials/variables";
+@import "../../../../style/partials/mixins";
+
+.submissions {
+    padding: $base-padding;
+    border-radius: $base-border-radius;
+    box-shadow: 0px 7.50311px 16.882px rgba(0, 0, 0, 0.08);
+    background-color: $white;
+    overflow-x: auto;
+
+    @include custom-scroll;
+
+    &__open-image {
+        display: flex;
+        align-items: center;
+        gap: calc($base-padding / 2);
+    }
+
+    &__verify {
+        cursor: pointer;
+        font-size: 16px;
+    }
+}

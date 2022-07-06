@@ -1,0 +1,17 @@
+@import "../../../../style/partials/variables";
+@import "../../../../style/partials/mixins";
+
+.submission-frequency {
+    padding: calc($base-padding * 2);
+    border-radius: $base-border-radius;
+    box-shadow: 0px 7.50311px 16.882px rgba(0, 0, 0, 0.08);
+    background-color: $white;
+    display: flex;
+    gap: $base-padding;
+    flex-direction: column;
+
+    &__chart-container {
+        background-color: #FAFAFA;
+        border-radius: $base-border-radius;
+    }
+}

@@ -1,0 +1,45 @@
+@import "../../../../style/partials/variables";
+@import "../../../../style/partials/mixins";
+
+.competition-report {
+    box-shadow: 0px 5px 42px 2px rgba(114, 80, 149, 0.1);
+    padding: $base-padding;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    gap: calc($base-padding / 2);
+    overflow-x: auto;
+    border-radius: $base-border-radius;
+    width: 100%;
+    height: 100%;
+    
+    @include desktop {
+        width: 48%;
+    }
+    
+    @include custom-scroll;
+
+    &__header {
+        display: flex;
+        gap: $base-padding;
+        justify-content: space-between;
+    }
+
+    &__head {
+        font-size: 12px;
+        font-weight: 500;
+        color: $gray;
+    }
+
+    &__data {
+        display: flex;
+        gap: $base-padding;
+        justify-content: space-between;
+    }
+
+    &__value {
+        font-size: 12px;
+        color: $text;
+        font-weight: bold;
+    }
+}

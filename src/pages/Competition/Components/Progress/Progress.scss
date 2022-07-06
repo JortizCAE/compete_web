@@ -1,0 +1,26 @@
+@import "../../../../style/partials/variables";
+@import "../../../../style/partials/mixins";
+
+.progress-made {
+    padding: calc($base-padding * 2);
+    background-color: $white;
+    border-radius: $base-border-radius;
+    box-shadow: 0px 7.50311px 16.882px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: $base-padding;
+    flex-direction: column;
+
+    &__bar {
+        background-color: $accent;
+    }
+
+    &__days {
+        margin: 0;
+        color: $gray;
+        font-size: 15px;
+    }
+}
+
+.progress-bar {
+    background-color: $accent2;
+}

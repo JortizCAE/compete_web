@@ -1,0 +1,59 @@
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
+
+.admin-page {
+    @include dashboard-page;
+
+    &__intro {
+        margin-bottom: $base-padding * 2;
+
+        &-title {
+            margin: 0 0 8px 0;
+            color: $purple;
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        &-welcome {
+            color: $accent2;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+    }
+
+    &__top {
+        display: flex;
+        gap: $base-padding * 2;
+        flex-wrap: wrap;
+
+        &-section {
+            border-radius: $base-border-radius;
+            box-shadow: 0px 7.50311px 16.882px rgba(0, 0, 0, 0.08);
+            background-color: $white;
+            padding: calc($base-padding * 2);
+            min-width: 300px;
+
+            &-title {
+                margin: 0;
+            }
+
+            &-value {
+                margin: 0;
+                font-size: 50px;
+                font-weight: bold;
+                margin-bottom: -18px;
+            }
+        }
+    }
+
+    &__competitions {
+        border-radius: $base-border-radius;
+        box-shadow: 0px 7.50311px 16.882px rgba(0, 0, 0, 0.08);
+        background-color: $white;
+        padding: calc($base-padding * 2);
+    }
+}

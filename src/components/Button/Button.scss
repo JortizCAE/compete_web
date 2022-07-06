@@ -1,0 +1,20 @@
+@import "../../style/partials/variables";
+
+.button {
+    border: none;
+    border-radius: $base-border-radius;
+    padding: calc($base-padding / 2) calc($base-padding * 3);
+    color: $white;
+
+    &--primary {
+        background-color: $purple;
+    }
+
+    &--secondary {
+        background-color: $secondary;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

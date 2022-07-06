@@ -1,0 +1,96 @@
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
+
+.register {
+    &__wrapper {
+        @include page-wrapper;
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+        margin-top: $base-padding;
+
+        @include desktop {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+    }
+
+    &__title {
+        margin: 0 auto;
+        font-weight: 400;
+        font-size: 20px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+        width: 100%;
+
+        @include desktop {
+            width: 350px;
+        }
+    }
+
+    &__other {
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+        &-icons {
+            display: flex;
+            justify-content: center;
+            gap: $base-padding;
+        }
+
+        &-text {
+            color: $gray;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        margin-top: $base-padding;
+    }
+
+    &__view {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: $base-padding;
+
+        &--mobile {
+            @include desktop {
+                display: none;
+            }
+        }
+
+        &--desktop {
+            display: none;
+
+            @include desktop {
+                display: flex;
+                align-items: flex-start;
+            }
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+
+        &-title {
+            margin: 0;
+        }
+
+        &-subtitle {
+            margin: 0;
+            font-weight: 500;
+        }
+    }
+}

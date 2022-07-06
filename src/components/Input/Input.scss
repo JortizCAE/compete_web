@@ -1,0 +1,20 @@
+@import "../../style/partials/variables";
+
+.input {
+    border-radius: 5px;
+    background-color: $accent;
+    padding: $base-padding calc($base-padding * 1.5);
+    border: none;
+
+    &::placeholder {
+        color: $accent2;
+    }
+
+    &:focus {
+        border-color: $purple;
+    }
+
+    &:active {
+        border-color: $purple;
+    }
+}

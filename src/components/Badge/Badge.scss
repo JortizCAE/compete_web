@@ -1,0 +1,19 @@
+@import "../../style/partials/variables";
+
+.custom-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+
+    &__dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 30px;
+        display: inline-block;
+    }
+}

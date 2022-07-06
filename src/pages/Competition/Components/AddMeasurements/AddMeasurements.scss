@@ -1,0 +1,27 @@
+@import "../../../../style/partials/variables";
+@import "../../../../style/partials/mixins";
+
+.add-measurements {
+    padding: $base-padding;
+    background-color: $white;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $base-padding;
+    border-radius: $base-border-radius;
+    box-shadow: 0px 7.50311px 16.882px rgba(0, 0, 0, 0.08);
+
+    &__title {
+        margin: 0;
+        margin-left: $base-padding;
+        font-weight: 600;
+    }
+
+    &__form {
+        display: flex;
+        gap: $base-padding;
+        flex-wrap: wrap;
+    }
+}

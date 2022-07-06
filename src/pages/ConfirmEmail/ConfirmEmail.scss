@@ -1,0 +1,54 @@
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
+
+.confirm-email {
+    &__wrapper {
+        @include page-wrapper;
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 6);
+        margin-top: $base-padding;
+
+        @include desktop {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 0;
+        }
+    }
+
+    &__image {
+        &-container {
+            width: 50%;
+            height: 600px;
+        }
+
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+        justify-content: center;
+        width: 50%;
+    }
+
+    &__verified {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding / 6);
+        justify-content: center;
+        width: 50%;
+
+        &-title {
+            margin: 0;
+        }
+    }
+
+    &__info {
+        font-size: 14px;
+        color: $gray;
+    }
+}

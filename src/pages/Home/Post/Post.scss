@@ -1,0 +1,140 @@
+@import '../../../style/partials/variables';
+@import '../../../style/partials/mixins';
+
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: calc($base-padding);
+    background-color: $accent;
+    border-radius: $base-border-radius;
+    padding: $base-padding calc($base-padding * 1.2);
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+
+        &-settings {
+            margin: 0;
+            font-size: 16px;
+            color: #242424;
+            cursor: pointer;
+            position: relative;
+
+            &-dropdown {
+                position: absolute;
+                top: 30px;
+                left: 0px;
+                background-color: $white;
+                border-radius: $base-border-radius;
+                display: flex;
+                flex-direction: column;
+                min-width: 150px;
+                overflow: hidden;
+                box-shadow: 0px 5px 42px 2px rgb(114 80 149 / 10%);
+            
+                &__item {
+                    color: $purple;
+                    font-size: 16px;
+                    margin: 0;
+                    border-bottom: 1px solid $accent2;
+                    padding: calc($base-padding / 2) $base-padding;
+            
+                    &--delete {
+                        color: rgb(240, 124, 124);
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+            
+                    &:hover {
+                        cursor: pointer;
+                        color: $accent2;
+                    }
+                }
+            }
+        }
+    }
+
+    &-user {
+        display: flex;
+        gap: $base-padding;
+
+        &-thumbnail {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50px;
+        }
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &-name {
+            margin: 0;
+            color: $purple;
+            font-weight: 600;
+        }
+
+        &-date {
+            margin: 0;
+            font-size: 13px;
+            color: $gray;
+        }
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+
+        &-image-container {
+            width: 100%;
+            height: 325px;
+            overflow: hidden;
+            border-radius: $base-border-radius;
+            background-color: rgb(34, 34, 34);
+        }
+
+        &-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: $base-border-radius;
+        }
+
+        &-text {
+            margin: 0;
+            white-space: pre-line;
+        }
+
+        &-stats {
+            display: flex;
+            gap: $base-padding;
+        }
+
+        &-like {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            font-size: 12px;
+            margin: 0;
+            cursor: pointer;
+
+            &-heart {
+                font-size: 16px;
+                color: rgb(255, 110, 110);
+            }
+        }
+
+        &-share {
+            margin: 0;
+            font-size: 16px;
+            color: $accent2;
+            cursor: pointer;
+        }
+    }
+}

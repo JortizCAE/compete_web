@@ -1,0 +1,59 @@
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
+
+.accept-competition {
+    &__wrapper {
+        @include page-wrapper;
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 6);
+        margin-top: $base-padding;
+
+        @include desktop {
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: calc($base-padding * 2);
+        }
+    }
+
+    &__image {
+        &-container {
+            width: 50%;
+            height: 600px;
+        }
+
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__form-container {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+        justify-content: center;
+        width: 50%;
+    }
+
+    &__info {
+        font-size: 14px;
+        color: $gray;
+    }
+
+    &__login-error {
+        color: rgb(248, 138, 138);
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: ($base-padding * 2);
+    }
+
+    &__error {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: $base-padding;
+    }
+}

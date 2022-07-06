@@ -1,0 +1,133 @@
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
+
+.competitions {
+  &__wrapper {
+    @include page-wrapper;
+    display: flex;
+    flex-direction: column;
+    gap: calc($base-padding * 1.5);
+    align-items: flex-start;
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $base-padding;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__switch {
+    display: inline-flex;
+    font-size: 14px;
+    border: 1px solid $purple;
+    border-radius: calc($base-border-radius * 1.5);
+    overflow: hidden;
+    align-items: center;
+    cursor: pointer;
+
+    &-value {
+      border-radius: $base-border-radius;
+      padding: calc($base-padding / 2) $base-padding;
+
+      &--active {
+        background-color: $purple;
+        border: 1px solid $purple;
+        color: $white;
+      }
+    }
+  }
+
+  &__filter {
+    padding: $base-padding calc($base-padding * 1.5);
+    background-color: $white;
+    box-shadow: 0px 5px 42px 2px rgba(114, 80, 149, 0.15);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: $base-padding;
+    flex-direction: column;
+
+    @include desktop {
+      flex-direction: row;
+    }
+  }
+
+  &__latest {
+    display: flex;
+    flex-direction: column;
+    gap: $base-padding;
+    width: 100%;
+  }
+
+  &__competitions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $base-padding;
+  }
+
+  &__competition {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: calc($base-padding / 2);
+    cursor: pointer;
+
+    @include tablet {
+      width: 150px;
+    }
+
+    &-main {
+      padding: $base-padding;
+      border-radius: $base-border-radius;
+      background-color: $accent;
+      position: relative;
+      min-height: 180px;
+
+      &--inactive {
+        background-color: #e7e7e7;
+      }
+    }
+
+    &-image {
+      width: 95px;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    &-info {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+    &-category {
+      margin: 0;
+      color: $purple;
+      font-weight: 600;
+    }
+
+    &-pot {
+      margin: 0;
+      color: rgb(100, 190, 100);
+    }
+
+    &-name {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.will_they_win {
+  color: $accent2;
+  cursor: pointer;
+  pointer-events: all;
+}

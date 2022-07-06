@@ -1,0 +1,54 @@
+@import '../../style/partials/variables';
+@import '../../style/partials/mixins';
+
+.teams {
+    @include dashboard-page;
+
+    &__intro {
+        margin-bottom: $base-padding * 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-title {
+            margin: 0;
+            color: $purple;
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        &-welcome {
+            color: $accent2;
+        }
+
+        &-buttons {
+            display: flex;
+            gap: $base-padding;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+    }
+}
+
+.add-team__modal {
+    padding: calc($base-padding * 1.5);
+    display: flex;
+    flex-direction: column;
+    gap: $base-padding;
+
+    &-intro {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+    }
+}

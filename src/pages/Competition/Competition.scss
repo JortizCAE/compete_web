@@ -1,0 +1,83 @@
+@import '../../style/partials/variables';
+@import '../../style/partials/mixins';
+
+.competition {
+    @include dashboard-page;
+
+    &__intro {
+        margin-bottom: $base-padding * 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include desktop {
+            flex-direction: row;
+        }
+
+        &-title {
+            margin: 0 0 8px 0;
+            color: $purple;
+            font-size: 22px;
+            font-weight: 400;
+        }
+
+        &-welcome {
+            color: $accent2;
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+            gap: calc($base-padding / 3)
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+
+        @include desktop {
+            flex-direction: row;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+
+        @include desktop {
+            width: 80%;
+        }
+    }
+
+    &__side-bar {
+        display: flex;
+        flex-direction: column;
+        gap: calc($base-padding * 2);
+
+        @include desktop {
+            width: 20%;
+        }
+    }
+}
+
+.add-member__modal {
+    padding: calc($base-padding * 1.5);
+    display: flex;
+    flex-direction: column;
+    gap: $base-padding;
+
+    &-intro {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: $base-padding;
+    }
+}
