@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d7daa6d6.css",
+    "main.js": "/static/js/main.0a8f3cec.js",
+    "static/media/compete.png": "/static/media/compete.ae54db8cfcae743cff47.png",
+    "static/media/sad.svg": "/static/media/sad.977574a7382ded237eea137c614ce9e5.svg",
+    "static/media/not_found.svg": "/static/media/not_found.d4177a4aa188c25120edfa5e530dc9a2.svg",
+    "static/media/bike.svg": "/static/media/bike.3149708999e8764d49280e16e3416d67.svg",
+    "static/media/forgot_password.svg": "/static/media/forgot_password.2a1769b22b5747cd41a8851140b3c237.svg",
+    "static/media/confirm_email.svg": "/static/media/confirm_email.ba5cff5b46255ce6f0f32a37174a8a1f.svg",
+    "static/media/accept_invite.svg": "/static/media/accept_invite.fbf561cb00b17806959fd4db72023fa3.svg",
+    "static/media/Monogram_Logo.svg": "/static/media/Monogram_Logo.b387cabae379dca38b95698d7725afc9.svg",
+    "static/media/fitbit.svg": "/static/media/fitbit.124283bba66f34e94d036356b5fdf223.svg",
+    "static/media/Monogram_Logo_White.svg": "/static/media/Monogram_Logo_White.d4b5aadcf228d5080c493746cf088cf3.svg",
+    "static/media/apple.svg": "/static/media/apple.d1add5368d3c2a07598c0c5d9170272c.svg",
+    "static/media/google.svg": "/static/media/google.ede2b9643567d090d31c3d0d23c21023.svg",
+    "static/media/Facebook.svg": "/static/media/Facebook.dc1cb09b80f0b432cd3e49e8f2da3f6b.svg",
+    "index.html": "/index.html",
+    "main.d7daa6d6.css.map": "/static/css/main.d7daa6d6.css.map",
+    "main.0a8f3cec.js.map": "/static/js/main.0a8f3cec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d7daa6d6.css",
+    "static/js/main.0a8f3cec.js"
+  ]
+}
