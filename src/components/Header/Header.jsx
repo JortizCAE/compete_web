@@ -58,10 +58,7 @@ const Header = () => {
       <div className="header__user header__user--mobile">
         <img
           className="header__user-thumbnail"
-          src={
-            userData() &&
-            `${process.env.REACT_APP_API_URL}${userData().user_image}`
-          }
+          src={userData() && `${userData().user_image}`}
           alt="user"
         />
       </div>
@@ -117,10 +114,7 @@ const Header = () => {
           <div className="header__user header__user--desktop">
             <img
               className="header__user-thumbnail"
-              src={
-                userData() &&
-                `${process.env.REACT_APP_API_URL}${userData().user_image}`
-              }
+              src={userData() && `${userData().user_image}`}
               alt="user"
             />
           </div>

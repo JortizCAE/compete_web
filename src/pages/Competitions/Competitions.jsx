@@ -11,20 +11,32 @@ import Form from "react-bootstrap/Form";
 import Input from "../../components/Input/Input";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaHeart } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
+import ReactRoundedImage from "react-rounded-image";
+import moment from "moment";
+import OfficePic from "../../assets/images/rounded-image.jpg";
+import {
+  LinearProgress,
+  createTheme,
+  ThemeProvider,
+  makeStyles,
+  Box,
+} from "@material-ui/core";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 const Competitions = ({ categories, types }) => {
   const [latestCompetitions, setLatestCompetitions] = useState(null);
   const [pastCompetitions, setPastCompetitions] = useState(null);
   const [userCompetitions, setUserCompetitions] = useState(null);
+  const authUser = useAuthUser();
   const [data, setData] = useState({
     latest: null,
     past: null,
   });
   const [userBase, setUserBase] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-
-  const authUser = useAuthUser();
-
+  console.log("Auth User", authUser);
   const [typeOptions, setTypeOptions] = useState([
     { value: -1, label: "All Types" },
   ]);
@@ -253,7 +265,7 @@ const Competitions = ({ categories, types }) => {
             onChange={(e) => setSelectedSubCategory(e)}
           />
         </div>
-        <div className="competitions__latest">
+        {/* <div className="competitions__latest">
           <h2>Latest Competitions</h2>
           <div className="competitions__competitions">
             {data.latest
@@ -287,6 +299,360 @@ const Competitions = ({ categories, types }) => {
                         onClick={() => setModalOpen(true)}
                       >
                         Will they win?
+                      </div>
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
+        </div> */}
+        <div className="competitions__latest">
+          <h2>Latest Competitions</h2>
+          <div className="competitions__competitions">
+            {data.latest
+              ? data.latest.map((comp) => {
+                  return (
+                    <div
+                      style={{
+                        boxShadow: "1px 2px 9px rgb(225 220 221)",
+                        margin: "2em",
+
+                        width: "33rem",
+                      }}
+                    >
+                      <div className="row">
+                        <div
+                          className="col-9"
+                          style={{
+                            backgroundImage:
+                              "linear-gradient(to right, rgb(236 179 38), #f09903)",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              padding: "20px",
+                            }}
+                          >
+                            <div className="d-flex flex-row justify-content-between">
+                              <h3>
+                                <FaHeart style={{ color: "white" }} />
+                              </h3>
+                              <h3>
+                                <FaChevronDown style={{ color: "white" }} />
+                              </h3>
+                            </div>
+                          </div>
+
+                          <div className="d-flex justify-content-center">
+                            <ReactRoundedImage
+                              image={authUser().user_image}
+                              imageWidth="90"
+                              imageHeight="90"
+                              roundedSize="0"
+                              borderRadius="70"
+                            />
+                          </div>
+
+                          <div className="mt-4 d-flex justify-content-center">
+                            <p
+                              style={{
+                                fontSize: "larger",
+                                fontWeight: "bold",
+                                color: "white",
+                              }}
+                            >
+                              {authUser().username}
+                            </p>
+                          </div>
+
+                          <div className="mt-4 d-flex justify-content-center">
+                            <p
+                              style={{
+                                fontSize: "larger",
+                                color: "white",
+                              }}
+                            >
+                              {comp.name}
+                            </p>
+                          </div>
+
+                          <div
+                            style={{ height: "7%" }}
+                            className="mt-2 d-flex justify-content-center justify-space-around"
+                          >
+                            <p
+                              style={{
+                                fontSize: "medium",
+                                color: "white",
+                                marginRight: "2%",
+                              }}
+                            >
+                              Starting Date
+                            </p>
+                            <p
+                              style={{
+                                fontSize: "medium",
+                                color: "white",
+                              }}
+                            >
+                              {moment(new Date(comp.start_date)).format(
+                                "DD-MM-YYYY"
+                              )}
+                            </p>
+                          </div>
+
+                          <div
+                            style={{ height: "7%" }}
+                            className="d-flex justify-content-center justify-space-around"
+                          >
+                            <p
+                              style={{
+                                fontSize: "medium",
+                                color: "white",
+                                marginRight: "2%",
+                              }}
+                            >
+                              Ending Date
+                            </p>
+                            <p
+                              style={{
+                                fontSize: "medium",
+                                color: "white",
+                              }}
+                            >
+                              {moment(new Date(comp.end_date)).format(
+                                "DD-MM-YYYY"
+                              )}
+                            </p>
+                          </div>
+
+                          <div className="mt-3 d-flex justify-content-around">
+                            <span className="d-flex flex-column justify-content-center">
+                              <p
+                                className="text-center"
+                                style={{
+                                  fontSize: "xx-large",
+                                  fontWeight: "900",
+                                  color: "white",
+                                }}
+                              >
+                                10
+                              </p>
+                              <p
+                                class="text-center"
+                                style={{
+                                  fontSize: "medium",
+                                  color: "white",
+                                  marginTop: "-18%",
+                                }}
+                              >
+                                Starting Points
+                              </p>
+                            </span>
+
+                            <span className="d-flex flex-column justify-content-center">
+                              <p
+                                className="text-center"
+                                style={{
+                                  fontSize: "xx-large ",
+                                  fontWeight: "900",
+                                  color: "white",
+                                }}
+                              >
+                                {comp.wager}
+                              </p>
+                              <p
+                                class="text-center"
+                                style={{
+                                  fontSize: "medium",
+                                  color: "white",
+                                  marginTop: "-18%",
+                                }}
+                              >
+                                Current Points
+                              </p>
+                            </span>
+
+                            <span className="d-flex flex-column justify-content-center">
+                              <p
+                                className="text-center"
+                                style={{
+                                  fontSize: "xx-large",
+                                  fontWeight: "900",
+                                  color: "white",
+                                }}
+                              >
+                                {comp.goal}
+                              </p>
+                              <p
+                                class="text-center"
+                                style={{
+                                  fontSize: "medium",
+                                  color: "white",
+                                  marginTop: "-18%",
+                                }}
+                              >
+                                Goal
+                              </p>
+                            </span>
+                          </div>
+
+                          <div>
+                            <hr
+                              style={{ color: "white", color: "white" }}
+                              class="my-2"
+                            ></hr>
+                          </div>
+
+                          <div className="mt-4 d-flex justify-content-center">
+                            <p
+                              style={{
+                                fontSize: "medium",
+                                color: "white",
+                              }}
+                            >
+                              Will adam Succeed?
+                            </p>
+                          </div>
+
+                          <div className="mt-2 mb-5 d-flex justify-content-center">
+                            <button
+                              style={{ marginRight: "10%" }}
+                              type="button"
+                              class="btn btn-light btn-circle btn-xl"
+                            >
+                              Yes
+                            </button>
+
+                            <button
+                              type="button"
+                              class="btn btn-light btn-circle btn-xl"
+                            >
+                              No
+                            </button>
+                          </div>
+
+                          <div className="mb-2 d-flex flex-row">
+                            <p
+                              className="circle"
+                              style={{ marginTop: "-10px" }}
+                            >
+                              Yes
+                            </p>
+                            <LinearProgress
+                              style={{ width: "85%", marginTop: "3px" }}
+                              variant="determinate"
+                              value={80}
+                            />
+                            <p
+                              className="circle"
+                              style={{
+                                marginTop: "-10px",
+                                marginRight: "10px",
+                              }}
+                            >
+                              80
+                            </p>
+                          </div>
+
+                          <div className="mb-5 d-flex flex-row">
+                            <p
+                              className="circle"
+                              style={{ marginTop: "-10px" }}
+                            >
+                              No
+                            </p>
+                            <LinearProgress
+                              style={{ width: "85%", marginTop: "3px" }}
+                              variant="determinate"
+                              value={20}
+                            />
+                            <p
+                              className="circle"
+                              style={{
+                                marginTop: "-10px",
+                                marginRight: "10px",
+                              }}
+                            >
+                              20
+                            </p>
+                          </div>
+                        </div>
+                        <div className="col-3 d-flex flex-wrap align-content-around">
+                          <span
+                            style={{ padding: "10%" }}
+                            className="d-flex flex-column justify-content-center"
+                          >
+                            <p
+                              className="text-center"
+                              style={{
+                                fontSize: "xx-large",
+                                fontWeight: "900",
+                                color: "black",
+                              }}
+                            >
+                              20-10
+                            </p>
+                            <p
+                              class="text-center"
+                              style={{
+                                fontSize: "medium",
+                                color: "black",
+                                marginTop: "-18%",
+                              }}
+                            >
+                              Record
+                            </p>
+                          </span>
+
+                          <span className="d-flex flex-column justify-content-center">
+                            <p
+                              className="text-center"
+                              style={{
+                                fontSize: "xx-large",
+                                fontWeight: "900",
+                                color: "black",
+                              }}
+                            >
+                              0-0
+                            </p>
+                            <p
+                              class="text-center"
+                              style={{
+                                fontSize: "medium",
+                                color: "black",
+                                marginTop: "-18%",
+                              }}
+                            >
+                              Investing Record
+                            </p>
+                          </span>
+
+                          <span className="d-flex flex-column justify-content-center">
+                            <p
+                              className="text-center"
+                              style={{
+                                fontSize: "xx-large",
+                                fontWeight: "900",
+                                color: "#FFD700",
+                              }}
+                            >
+                              50
+                            </p>
+                            <p
+                              class="text-center"
+                              style={{
+                                fontSize: "medium",
+                                color: "#FFD700",
+                                marginTop: "-18%",
+                              }}
+                            >
+                              Total Winning
+                            </p>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   );

@@ -131,3 +131,45 @@
   cursor: pointer;
   pointer-events: all;
 }
+
+.btn-circle.btn-xl {
+  width: 50px;
+  height: 50px;
+  padding: 10px 10px;
+  border-radius: 60px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: #ffffff;
+}
+
+.MuiLinearProgress-colorPrimary {
+  background-color: #3e3ec7;
+}
+
+.progress {
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  font-size: 0.75rem;
+  background-color: #ececec59;
+  border-radius: 0.25rem;
+}
+
+.progress-bar {
+  background-color: #a48532;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #000;
+  text-align: center;
+  background: #fff;
+  font-weight: bold;
+}

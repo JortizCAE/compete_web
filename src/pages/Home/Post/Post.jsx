@@ -64,8 +64,7 @@ const Post = ({ data, users, toast, getPosts, authUser }) => {
               className="post-user-image"
               src={
                 users.find((user) => user._id === data.user)
-                  ? process.env.REACT_APP_API_URL +
-                    users.find((user) => user._id === data.user).profile_pic
+                  ? users.find((user) => user._id === data.user).profile_pic
                   : ""
               }
               alt="user"
