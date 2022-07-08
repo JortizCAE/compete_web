@@ -100,6 +100,7 @@ const Competitions = ({ categories, types }) => {
   };
 
   useEffect(() => {
+    console.log("user_id", authUser().user_id);
     axios
       .get(`${process.env.REACT_APP_API_URL}/challenges/latest`)
       .then((res) => {
@@ -315,9 +316,7 @@ const Competitions = ({ categories, types }) => {
                     <div
                       style={{
                         boxShadow: "1px 2px 9px rgb(225 220 221)",
-                        margin: "2em",
-
-                        width: "33rem",
+                        margin: "1%",
                       }}
                     >
                       <div className="row">
@@ -332,7 +331,7 @@ const Competitions = ({ categories, types }) => {
                             style={{
                               display: "flex",
                               flexDirection: "column",
-                              padding: "20px",
+                              padding: "5px",
                             }}
                           >
                             <div className="d-flex flex-row justify-content-between">
@@ -348,55 +347,29 @@ const Competitions = ({ categories, types }) => {
                           <div className="d-flex justify-content-center">
                             <ReactRoundedImage
                               image={authUser().user_image}
-                              imageWidth="90"
-                              imageHeight="90"
+                              imageWidth="50"
+                              imageHeight="50"
                               roundedSize="0"
                               borderRadius="70"
                             />
                           </div>
 
-                          <div className="mt-4 d-flex justify-content-center">
-                            <p
-                              style={{
-                                fontSize: "larger",
-                                fontWeight: "bold",
-                                color: "white",
-                              }}
-                            >
-                              {authUser().username}
+                          <div className=" d-flex text-white justify-content-center">
+                            <p className="card-info">
+                              <strong>{authUser().username}</strong>
                             </p>
                           </div>
 
-                          <div className="mt-4 d-flex justify-content-center">
-                            <p
-                              style={{
-                                fontSize: "larger",
-                                color: "white",
-                              }}
-                            >
-                              {comp.name}
-                            </p>
+                          <div className=" d-flex text-white justify-content-center">
+                            <p>{comp.name}</p>
                           </div>
 
                           <div
                             style={{ height: "7%" }}
-                            className="mt-2 d-flex justify-content-center justify-space-around"
+                            className="d-flex justify-content-center text-white justify-content-around card-info"
                           >
-                            <p
-                              style={{
-                                fontSize: "medium",
-                                color: "white",
-                                marginRight: "2%",
-                              }}
-                            >
-                              Starting Date
-                            </p>
-                            <p
-                              style={{
-                                fontSize: "medium",
-                                color: "white",
-                              }}
-                            >
+                            <p className="card-info">Starting Date</p>
+                            <p class="ml-4 card-info ">
                               {moment(new Date(comp.start_date)).format(
                                 "DD-MM-YYYY"
                               )}
@@ -405,95 +378,40 @@ const Competitions = ({ categories, types }) => {
 
                           <div
                             style={{ height: "7%" }}
-                            className="d-flex justify-content-center justify-space-around"
+                            className="d-flex justify-content-center justify-content-around text-white card-info"
                           >
-                            <p
-                              style={{
-                                fontSize: "medium",
-                                color: "white",
-                                marginRight: "2%",
-                              }}
-                            >
-                              Ending Date
-                            </p>
-                            <p
-                              style={{
-                                fontSize: "medium",
-                                color: "white",
-                              }}
-                            >
+                            <p className="card-info">Ending Date</p>
+                            <p className="card-info">
                               {moment(new Date(comp.end_date)).format(
                                 "DD-MM-YYYY"
                               )}
                             </p>
                           </div>
 
-                          <div className="mt-3 d-flex justify-content-around">
+                          <div className=" d-flex justify-content-around text-white">
                             <span className="d-flex flex-column justify-content-center">
-                              <p
-                                className="text-center"
-                                style={{
-                                  fontSize: "xx-large",
-                                  fontWeight: "900",
-                                  color: "white",
-                                }}
-                              >
+                              <p className="text-center text-white sidelabel-data">
                                 10
                               </p>
-                              <p
-                                class="text-center"
-                                style={{
-                                  fontSize: "medium",
-                                  color: "white",
-                                  marginTop: "-18%",
-                                }}
-                              >
+                              <p class="text-center text-white sidelabel">
                                 Starting Points
                               </p>
                             </span>
 
                             <span className="d-flex flex-column justify-content-center">
-                              <p
-                                className="text-center"
-                                style={{
-                                  fontSize: "xx-large ",
-                                  fontWeight: "900",
-                                  color: "white",
-                                }}
-                              >
+                              <p className="text-center text-white sidelabel-data">
                                 {comp.wager}
                               </p>
-                              <p
-                                class="text-center"
-                                style={{
-                                  fontSize: "medium",
-                                  color: "white",
-                                  marginTop: "-18%",
-                                }}
-                              >
+                              <p class="text-center text-white sidelabel">
                                 Current Points
                               </p>
                             </span>
 
                             <span className="d-flex flex-column justify-content-center">
-                              <p
-                                className="text-center"
-                                style={{
-                                  fontSize: "xx-large",
-                                  fontWeight: "900",
-                                  color: "white",
-                                }}
-                              >
+                              <p className="text-center text-white sidelabel-data">
                                 {comp.goal}
                               </p>
-                              <p
-                                class="text-center"
-                                style={{
-                                  fontSize: "medium",
-                                  color: "white",
-                                  marginTop: "-18%",
-                                }}
-                              >
+                              <p class="text-center text-white sidelabel">
                                 Goal
                               </p>
                             </span>
@@ -506,18 +424,19 @@ const Competitions = ({ categories, types }) => {
                             ></hr>
                           </div>
 
-                          <div className="mt-4 d-flex justify-content-center">
-                            <p
-                              style={{
-                                fontSize: "medium",
-                                color: "white",
-                              }}
-                            >
-                              Will adam Succeed?
+                          <div
+                            onClick={() => setModalOpen(true)}
+                            className="mt-4 d-flex justify-content-center text-white"
+                            style={{ cursor: "pointer" }}
+                          >
+                            <p className="card-info">
+                              <strong>
+                                Will {authUser().username} Succeed?
+                              </strong>
                             </p>
                           </div>
 
-                          <div className="mt-2 mb-5 d-flex justify-content-center">
+                          <div className=" mb-2 d-flex justify-content-center">
                             <button
                               style={{ marginRight: "10%" }}
                               type="button"
@@ -534,7 +453,7 @@ const Competitions = ({ categories, types }) => {
                             </button>
                           </div>
 
-                          <div className="mb-2 d-flex flex-row">
+                          <div className="mb-2 d-flex flex-row justify-content-center">
                             <p
                               className="circle"
                               style={{ marginTop: "-10px" }}
@@ -542,7 +461,7 @@ const Competitions = ({ categories, types }) => {
                               Yes
                             </p>
                             <LinearProgress
-                              style={{ width: "85%", marginTop: "3px" }}
+                              style={{ width: "50%", marginTop: "3px" }}
                               variant="determinate"
                               value={80}
                             />
@@ -557,7 +476,7 @@ const Competitions = ({ categories, types }) => {
                             </p>
                           </div>
 
-                          <div className="mb-5 d-flex flex-row">
+                          <div className="d-flex flex-row justify-content-center">
                             <p
                               className="circle"
                               style={{ marginTop: "-10px" }}
@@ -565,7 +484,7 @@ const Competitions = ({ categories, types }) => {
                               No
                             </p>
                             <LinearProgress
-                              style={{ width: "85%", marginTop: "3px" }}
+                              style={{ width: "50%", marginTop: "3px" }}
                               variant="determinate"
                               value={20}
                             />
@@ -580,75 +499,30 @@ const Competitions = ({ categories, types }) => {
                             </p>
                           </div>
                         </div>
-                        <div className="col-3 d-flex flex-wrap align-content-around">
-                          <span
-                            style={{ padding: "10%" }}
-                            className="d-flex flex-column justify-content-center"
-                          >
-                            <p
-                              className="text-center"
-                              style={{
-                                fontSize: "xx-large",
-                                fontWeight: "900",
-                                color: "black",
-                              }}
-                            >
+                        <div className="col-3 d-flex flex-wrap align-content-around justify-content-center">
+                          <span className="d-flex flex-column justify-content-center mw-100">
+                            <p class="text-center text-dark sidelabel-data">
                               20-10
                             </p>
-                            <p
-                              class="text-center"
-                              style={{
-                                fontSize: "medium",
-                                color: "black",
-                                marginTop: "-18%",
-                              }}
-                            >
+                            <p class="text-center text-dark sidelabel">
                               Record
                             </p>
                           </span>
 
-                          <span className="d-flex flex-column justify-content-center">
-                            <p
-                              className="text-center"
-                              style={{
-                                fontSize: "xx-large",
-                                fontWeight: "900",
-                                color: "black",
-                              }}
-                            >
+                          <span className="d-flex flex-column justify-content-center mw-100">
+                            <p class="text-center text-dark sidelabel-data">
                               0-0
                             </p>
-                            <p
-                              class="text-center"
-                              style={{
-                                fontSize: "medium",
-                                color: "black",
-                                marginTop: "-18%",
-                              }}
-                            >
+                            <p class="text-center text-dark sidelabel">
                               Investing Record
                             </p>
                           </span>
 
-                          <span className="d-flex flex-column justify-content-center">
-                            <p
-                              className="text-center"
-                              style={{
-                                fontSize: "xx-large",
-                                fontWeight: "900",
-                                color: "#FFD700",
-                              }}
-                            >
+                          <span className="d-flex flex-column justify-content-center mw-100">
+                            <p class="text-center text-dark sidelabel-data">
                               50
                             </p>
-                            <p
-                              class="text-center"
-                              style={{
-                                fontSize: "medium",
-                                color: "#FFD700",
-                                marginTop: "-18%",
-                              }}
-                            >
+                            <p class="text-center text-dark sidelabel">
                               Total Winning
                             </p>
                           </span>
