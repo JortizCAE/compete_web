@@ -29,6 +29,10 @@ const Competitions = ({ categories, types }) => {
   const [latestCompetitions, setLatestCompetitions] = useState(null);
   const [pastCompetitions, setPastCompetitions] = useState(null);
   const [userCompetitions, setUserCompetitions] = useState(null);
+  const [currentCompetitions, setCurrentCompetitions] = useState({});
+  const [count, setCount] = useState({ bidCount: null });
+  const [amount, setAmount] = useState(0);
+  const [result, setResult] = useState(false);
   const authUser = useAuthUser();
   const [data, setData] = useState({
     latest: null,
@@ -88,6 +92,49 @@ const Competitions = ({ categories, types }) => {
     setSubCategoryOptions(subCategoryObj);
   }, []);
 
+  const getCount = (comp) => {
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/wager/getBid`,
+      headers: {},
+      data: {
+        id: comp._id,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      setCount({
+        bidCount: {
+          win: res?.data?.bidCount?.win,
+          lose: res?.data?.bidCount?.lose,
+        },
+      });
+    });
+  };
+
+  const setModal = (comp) => {
+    console.log("Comp", comp);
+    setCurrentCompetitions(comp);
+    setModalOpen(true);
+  };
+
+  const submitWage = async (bid, id, result) => {
+    console.log("bid", bid);
+    console.log("id", id);
+    console.log("result", result);
+
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/wager/setBid`,
+      headers: {},
+      data: {
+        user_id: authUser().user_id,
+        challenge_id: id,
+        bid: bid,
+        expected_result: result,
+      },
+    });
+    setCurrentCompetitions({});
+  };
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
@@ -104,6 +151,7 @@ const Competitions = ({ categories, types }) => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/challenges/latest`)
       .then((res) => {
+        console.log("Latest_ID", res.data);
         setLatestCompetitions(res.data);
         return axios.get(`${process.env.REACT_APP_API_URL}/challenges/past`);
       })
@@ -118,8 +166,17 @@ const Competitions = ({ categories, types }) => {
       .then((res) => {
         setUserCompetitions(res.data);
       })
+
       .catch((err) => console.err(err));
   }, []);
+
+  useEffect(() => {
+    if (latestCompetitions) {
+      latestCompetitions.map((item) => {
+        getCount(item._id);
+      });
+    }
+  }, [latestCompetitions]);
 
   useEffect(() => {
     if (userCompetitions && latestCompetitions && pastCompetitions) {
@@ -425,7 +482,7 @@ const Competitions = ({ categories, types }) => {
                           </div>
 
                           <div
-                            onClick={() => setModalOpen(true)}
+                            onClick={() => setModal(comp)}
                             className="mt-4 d-flex justify-content-center text-white"
                             style={{ cursor: "pointer" }}
                           >
@@ -579,17 +636,26 @@ const Competitions = ({ categories, types }) => {
           <Form>
             <Form.Check
               type="switch"
+              onChange={(value) =>
+                setResult(value.target.value == "on" ? true : false)
+              }
               id="custom-switch"
               label="Will They Win?"
             />
           </Form>
-          <Input placeholder="Wager ($ USD)" type="number" />
+          <Input
+            placeholder="Wager ($ USD)"
+            type="number"
+            id="bid"
+            onChange={(value) => setAmount(value.target.value)}
+          />
           <Button
             text="Place Bet"
             type="primary"
             fn={() => {
               setModalOpen(false);
               toast.success("Bet Placed");
+              submitWage(amount, currentCompetitions._id, result);
             }}
           />
         </div>
