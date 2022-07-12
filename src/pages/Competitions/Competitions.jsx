@@ -559,7 +559,7 @@ const Competitions = ({ categories, types }) => {
                         <div className="col-3 d-flex flex-wrap align-content-around justify-content-center">
                           <span className="d-flex flex-column justify-content-center mw-100">
                             <p class="text-center text-dark sidelabel-data">
-                              {comp.bidCount[0].win} - {comp.bidCount[0].lose}
+                              {comp?.bidCount[0].win} - {comp?.bidCount[0].lose}
                             </p>
                             <p class="text-center text-dark sidelabel">
                               Record
