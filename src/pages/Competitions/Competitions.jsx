@@ -15,7 +15,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import ReactRoundedImage from "react-rounded-image";
 import moment from "moment";
-import OfficePic from "../../assets/images/rounded-image.jpg";
+import NA from "../../assets/images/image-not-available.jpg";
 import {
   LinearProgress,
   createTheme,
@@ -372,6 +372,7 @@ const Competitions = ({ categories, types }) => {
                   return (
                     <div
                       style={{
+                        width: "25rem",
                         boxShadow: "1px 2px 9px rgb(225 220 221)",
                         margin: "1%",
                       }}
@@ -381,7 +382,7 @@ const Competitions = ({ categories, types }) => {
                           className="col-9"
                           style={{
                             backgroundImage:
-                              "linear-gradient(to right, rgb(236 179 38), #f09903)",
+                              "linear-gradient(to right, #FFCC66, #AE7400)",
                           }}
                         >
                           <div
@@ -403,7 +404,13 @@ const Competitions = ({ categories, types }) => {
 
                           <div className="d-flex justify-content-center">
                             <ReactRoundedImage
-                              image={authUser().user_image}
+                              image={
+                                comp.userDetails[0].profilePicture.includes(
+                                  "amazonaws"
+                                )
+                                  ? comp.userDetails[0].profilePicture
+                                  : NA
+                              }
                               imageWidth="50"
                               imageHeight="50"
                               roundedSize="0"
@@ -413,7 +420,7 @@ const Competitions = ({ categories, types }) => {
 
                           <div className=" d-flex text-white justify-content-center">
                             <p className="card-info">
-                              <strong>{authUser().username}</strong>
+                              <strong>{comp.userDetails[0].userName}</strong>
                             </p>
                           </div>
 
@@ -446,7 +453,10 @@ const Competitions = ({ categories, types }) => {
                           </div>
 
                           <div className=" d-flex justify-content-around text-white">
-                            <span className="d-flex flex-column justify-content-center">
+                            <span
+                              className="d-flex flex-column justify-content-center"
+                              style={{ width: "min-content" }}
+                            >
                               <p className="text-center text-white sidelabel-data">
                                 10
                               </p>
@@ -455,7 +465,10 @@ const Competitions = ({ categories, types }) => {
                               </p>
                             </span>
 
-                            <span className="d-flex flex-column justify-content-center">
+                            <span
+                              className="d-flex flex-column justify-content-center"
+                              style={{ width: "min-content" }}
+                            >
                               <p className="text-center text-white sidelabel-data">
                                 {comp.wager}
                               </p>
@@ -464,7 +477,13 @@ const Competitions = ({ categories, types }) => {
                               </p>
                             </span>
 
-                            <span className="d-flex flex-column justify-content-center">
+                            <span
+                              className="d-flex flex-column justify-content-center"
+                              style={{
+                                width: "min-content",
+                                transform: "translate(0%, -12%)",
+                              }}
+                            >
                               <p className="text-center text-white sidelabel-data">
                                 {comp.goal}
                               </p>
@@ -488,7 +507,7 @@ const Competitions = ({ categories, types }) => {
                           >
                             <p className="card-info">
                               <strong>
-                                Will {authUser().username} Succeed?
+                                Will {comp.userDetails[0].userName} Succeed?
                               </strong>
                             </p>
                           </div>
@@ -557,25 +576,25 @@ const Competitions = ({ categories, types }) => {
                           </div>
                         </div>
                         <div className="col-3 d-flex flex-wrap align-content-around justify-content-center">
-                          <span className="d-flex flex-column justify-content-center mw-100">
+                          <span className="d-flex flex-column transformText justify-content-center w-100">
                             <p class="text-center text-dark sidelabel-data">
-                              {comp?.bidCount[0].win} - {comp?.bidCount[0].lose}
+                              0-0
                             </p>
                             <p class="text-center text-dark sidelabel">
                               Record
                             </p>
                           </span>
 
-                          <span className="d-flex flex-column justify-content-center mw-100">
+                          <span className="d-flex flex-column transformText justify-content-center w-100">
                             <p class="text-center text-dark sidelabel-data">
-                              0-0
+                              {comp?.bidCount[0].win} - {comp?.bidCount[0].lose}
                             </p>
                             <p class="text-center text-dark sidelabel">
                               Investing Record
                             </p>
                           </span>
 
-                          <span className="d-flex flex-column justify-content-center mw-100">
+                          <span className="d-flex flex-column transformText justify-content-center w-100">
                             <p class="text-center text-dark sidelabel-data">
                               50
                             </p>
