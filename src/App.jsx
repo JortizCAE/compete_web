@@ -19,6 +19,8 @@ import Teams from "./pages/Teams/Teams";
 import Search from "./pages/Search/Search";
 import Admin from "./pages/Admin/Admin";
 import MyProgress from "./pages/Progress/Progress";
+import SideBar from "./components/Side-bar-fixed/Side-bar-fixed";
+import Carousel from "./components/caraousel-react/carousel-books";
 
 function App() {
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -531,6 +533,24 @@ function App() {
               element={
                 <RequireAuth loginPath={"/login"}>
                   <Home />
+                </RequireAuth>
+              }
+            ></Route>
+
+            <Route
+              path="/side-bar"
+              element={
+                <RequireAuth loginPath={"/login"}>
+                  <SideBar />
+                </RequireAuth>
+              }
+            ></Route>
+
+            <Route
+              path="/caraousel-books"
+              element={
+                <RequireAuth loginPath={"/login"}>
+                  <Carousel />
                 </RequireAuth>
               }
             ></Route>

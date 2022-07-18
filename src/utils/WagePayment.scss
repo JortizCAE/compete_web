@@ -1,0 +1,21 @@
+.page-three {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * 2);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+
+    &-info {
+      color: gray;
+      font-size: 14px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: calc(16 * 2);
+  }
+}

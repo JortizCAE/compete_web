@@ -1,0 +1,237 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* body {
+  @apply text-[black] font-roboto font-normal;
+} */
+.slider-single-content {
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+.react-3d-carousel .slider-container .slider-left div,
+.react-3d-carousel .slider-container .slider-right div,
+.swiper-button-prev,
+.swiper-button-next {
+  border: 0 !important;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 50%);
+  width: 61px !important;
+  height: 61px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.react-3d-carousel .slider-container .slider-left div,
+.react-3d-carousel .slider-container .slider-right div {
+  left: -5px !important;
+  margin-top: 0 !important;
+}
+
+.react-3d-carousel .slider-container .slider-right div {
+  left: calc(100% - 50px) !important;
+}
+.react-3d-carousel .slider-container .slider-left div i,
+.swiper-button-prev::after {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAVCAYAAABCIB6VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADMSURBVHgB7dTfDQFBEAbwbxDxeCVsHxKhBBWgAx2ICijhlODJ4ypBB0cHKMAaa8nikptlvN2XTLI3m/tlk/0DCOI2MM7Cci0gDElQdGB5aHyjDUNdHKr+ayShwFKC3kIJaE4DTCAM/QMthTXQD1gLfYE10Sdcgm5xwRjf5IwTDXG8wxZFhP4eh/7jHGfQTdYKgylXHk3s377laWJHPaw9zJu0cta38zBtQn8OjTA+4nJRzaCVGlfHqx96xhEfPeFDL0q08gLaYTTpdl4BebiDzStRiuAAAAAASUVORK5CYII=");
+  display: block;
+  color: transparent;
+}
+.react-3d-carousel .slider-container .slider-right div i,
+.swiper-button-next::after {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADXSURBVHgBrdWxFcIgFAXQh4WtbCAj2NvoBLqB2cARXCVOgAtoKmtHEDfIBvhR1NjA/4SXk0NCODeEEAIw4y20P2POaTvhNPIdNG03au3oeFcFjTGxbHMwC1Vr9FQ0g6okrCBIhNpBVUM3PI5CubAY5cBFaA4uRlOwihf3VGiUZUv74g/2F2yovyfUSx/mqQsHqBf3HVMaAgNpPGbxKc0HxBSr8rdvX+tBh994vsElHmXzNAGGE/kXlQHFKAcUoVwwhL+eMkF2T+N0u3NAUQg+0G79Nf+fegIEHVq2jUFL0QAAAABJRU5ErkJggg==");
+  display: block;
+  color: transparent;
+}
+
+.marginBottom {
+  marginbottom: 100%;
+}
+
+.px-22px {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.py-7 {
+  padding-bottom: 1.75rem;
+  padding-top: 1.75rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.border-4 {
+  border-width: 4px !important;
+}
+
+.bg-primary-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 204 102 / var(--tw-bg-opacity));
+}
+.border-primary-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 204 102 / var(--tw-border-opacity));
+}
+.border-4 {
+  border-width: 4px;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.bg-primary-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(218 184 118 / var(--tw-bg-opacity));
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.w-100px {
+  width: 100px;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.z-50 {
+  z-index: 50;
+}
+.left-0 {
+  left: 0;
+}
+
+.top-0 {
+  top: 0;
+}
+.fixed {
+  position: fixed;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+.w-48px {
+  width: 48px;
+}
+.h-48px {
+  height: 48px;
+}
+.block {
+  display: block;
+}
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+.list-none {
+  list-style-type: none;
+}
+
+.text-center {
+  text-align: center;
+}
+.pr-9 {
+  padding-right: 2.25rem;
+}
+.pl-8 {
+  padding-left: 2rem;
+}
+.py-7 {
+  padding-bottom: 1.75rem;
+  padding-top: 1.75rem;
+}
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.block {
+  display: block;
+}
+.relative {
+  position: relative;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.w-6 {
+  width: 1.5rem;
+}
+.h-1.2px {
+  height: 1.2px;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.h-7 {
+  height: 1.75rem;
+}
+.inline-block {
+  display: inline-block;
+}
+img,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+*,
+:after,
+:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Bg */
+
+position: absolute;
+left: -0.19%;
+right: 94.56%;
+top: -0.49%;
+bottom: -0.56%;
+
+background: #dab876;

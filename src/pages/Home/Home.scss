@@ -1,161 +1,161 @@
-@import '../../style/partials/variables';
-@import '../../style/partials/mixins';
+@import "../../style/partials/variables";
+@import "../../style/partials/mixins";
 
 .home {
-    @include dashboard-page;
-    
-    &__content {
-        display: flex;
-        flex-direction: column;
-        gap: calc($base-padding * 2);
+  @include dashboard-page;
 
-        @include desktop {
-            flex-direction: row;
-            align-items: flex-start;
-        }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: calc($base-padding * 2);
 
-        &-main {
-            display: flex;
-            flex-direction: column;
-            gap: calc($base-padding * 2);
-            @include desktop {
-                width: 600px;
-            }
-        }
+    @include desktop {
+      flex-direction: row;
+      align-items: flex-start;
     }
 
-    &__new-post {
+    &-main {
+      display: flex;
+      flex-direction: column;
+      gap: calc($base-padding * 2);
+      @include desktop {
+        width: 600px;
+      }
+    }
+  }
+
+  &__new-post {
+    display: flex;
+    flex-direction: column;
+    background-color: $accent;
+    padding: $base-padding calc($base-padding * 1.2);
+    border-radius: $base-border-radius;
+    gap: $base-padding;
+
+    &-content {
+      height: 150px;
+      width: 100%;
+      resize: none;
+      border-radius: $base-border-radius;
+      padding: $base-padding;
+      border: 1px solid $accent2;
+      outline: 1px solid $accent2;
+
+      &::placeholder {
+        color: $accent2;
+      }
+
+      &:active {
+        border: 1px solid $accent;
+        outline: 1px solid $accent;
+      }
+    }
+
+    &-image-container {
+      width: 150px;
+      height: 150px;
+      border-radius: $base-border-radius;
+      overflow: hidden;
+      position: relative;
+    }
+
+    &-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &-remove {
+        color: rgb(238, 92, 92);
+        position: absolute;
+        top: 5px;
+        right: 8px;
+        font-size: 22px;
+      }
+    }
+
+    &-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-upload {
+      font-size: 16px;
+      color: $accent2;
+      display: flex;
+      gap: calc($base-padding / 2);
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    gap: $base-padding;
+  }
+
+  &__to-follow {
+    background-color: $accent;
+    border-radius: $base-border-radius;
+    padding: $base-padding calc($base-padding * 1.2);
+    flex-direction: column;
+    gap: calc($base-padding / 2);
+    display: none;
+
+    &--mobile {
+      display: flex;
+
+      @include desktop {
+        display: none !important;
+      }
+    }
+
+    @include desktop {
+      display: flex;
+      min-width: 300px;
+    }
+
+    &-title {
+      font-size: 21px;
+      color: $purple;
+      font-weight: 600;
+    }
+
+    &-users {
+      display: flex;
+      flex-direction: column;
+      gap: $base-padding;
+    }
+
+    &-user {
+      display: flex;
+      justify-content: space-between;
+
+      &-detail {
         display: flex;
-        flex-direction: column;
-        background-color: $accent;
-        padding: $base-padding calc($base-padding * 1.2);
-        border-radius: $base-border-radius;
         gap: $base-padding;
+        align-items: center;
+      }
 
-        &-content {
-            height: 150px;
-            width: 100%;
-            resize: none;
-            border-radius: $base-border-radius;
-            padding: $base-padding;
-            border: 1px solid $accent2;
-            outline: 1px solid $accent2;
+      &-thumbnail {
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 50px;
+      }
 
-            &::placeholder {
-                color: $accent2;
-            }
+      &-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
-            &:active {
-                border: 1px solid $accent;
-                outline: 1px solid $accent;
-            }
-        }
-
-        &-image-container {
-            width: 150px;
-            height: 150px;
-            border-radius: $base-border-radius;
-            overflow: hidden;
-            position: relative;
-        }
-
-        &-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
-            &-remove {
-                color: rgb(238, 92, 92);
-                position: absolute;
-                top: 5px;
-                right: 8px;
-                font-size: 22px;
-            }
-        }
-
-        &-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        &-upload {
-            font-size: 16px;
-            color: $accent2;
-            display: flex;
-            gap: calc($base-padding / 2);
-            align-items: center;
-            cursor: pointer;
-        }
+      &-name {
+        margin: 0;
+        color: #788292;
+        font-size: 14px;
+      }
     }
-
-    &__posts {
-        display: flex;
-        flex-direction: column;
-        gap: $base-padding;
-    }
-
-    &__to-follow {
-        background-color: $accent;
-        border-radius: $base-border-radius;
-        padding: $base-padding calc($base-padding * 1.2);
-        flex-direction: column;
-        gap: calc($base-padding / 2);
-        display: none;
-
-        &--mobile {
-            display: flex;
-
-            @include desktop {
-                display: none !important;
-            }
-        }
-
-        @include desktop {
-            display: flex;
-            min-width: 300px;
-        }
-
-        &-title {
-            font-size: 21px;
-            color: $purple;
-            font-weight: 600;
-        }
-
-        &-users {
-            display: flex;
-            flex-direction: column;
-            gap: $base-padding;
-        }
-
-        &-user {
-            display: flex;
-            justify-content: space-between;
-
-            &-detail {
-                display: flex;
-                gap: $base-padding;
-                align-items: center;
-            }
-
-            &-thumbnail {
-                width: 30px;
-                height: 30px;
-                overflow: hidden;
-                border-radius: 50px;
-            }
-
-            &-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            &-name {
-                margin: 0;
-                color: #788292;
-                font-size: 14px;
-            }
-        }
-    }
+  }
 }

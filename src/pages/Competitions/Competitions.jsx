@@ -16,6 +16,9 @@ import { FaChevronDown } from "react-icons/fa";
 import ReactRoundedImage from "react-rounded-image";
 import moment from "moment";
 import NA from "../../assets/images/image-not-available.jpg";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   LinearProgress,
   createTheme,
@@ -24,8 +27,11 @@ import {
   Box,
 } from "@material-ui/core";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import WagePayment from "../../utils/WagePayment";
 
 const Competitions = ({ categories, types }) => {
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+  const [isEnabled, setIsEnabled] = useState(false);
   const [latestCompetitions, setLatestCompetitions] = useState(null);
   const [pastCompetitions, setPastCompetitions] = useState(null);
   const [userCompetitions, setUserCompetitions] = useState(null);
@@ -57,18 +63,6 @@ const Competitions = ({ categories, types }) => {
     subCategoryOptions[0]
   );
 
-  const customStylesModal = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      minWidth: "500px",
-    },
-  };
-
   useEffect(() => {
     let typeObj = [];
     typeObj.push(typeOptions[0]);
@@ -91,60 +85,6 @@ const Competitions = ({ categories, types }) => {
     });
     setSubCategoryOptions(subCategoryObj);
   }, []);
-
-  const getCount = (comp) => {
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}/wager/getBid`,
-      headers: {},
-      data: {
-        id: comp._id,
-      },
-    }).then((res) => {
-      console.log(res.data);
-      setCount({
-        bidCount: {
-          win: res?.data?.bidCount?.win,
-          lose: res?.data?.bidCount?.lose,
-        },
-      });
-    });
-  };
-
-  const setModal = (comp) => {
-    console.log("Comp", comp);
-    setCurrentCompetitions(comp);
-    setModalOpen(true);
-  };
-
-  const submitWage = async (bid, id, result) => {
-    console.log("bid", bid);
-    console.log("id", id);
-    console.log("result", result);
-
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}/wager/setBid`,
-      headers: {},
-      data: {
-        user_id: authUser().user_id,
-        challenge_id: id,
-        bid: bid,
-        expected_result: result,
-      },
-    });
-    setCurrentCompetitions({});
-  };
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? "#725095" : "#725095",
-      background: state.isSelected ? "#F0EFFF" : "white",
-      ":hover": {
-        background: "#F0EFFF",
-      },
-    }),
-  };
 
   useEffect(() => {
     console.log("user_id", authUser().user_id);
@@ -266,6 +206,72 @@ const Competitions = ({ categories, types }) => {
     selectedSubCategory,
   ]);
 
+  const customStylesModal = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      minWidth: "500px",
+    },
+  };
+
+  const getCount = (comp) => {
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/wager/getBid`,
+      headers: {},
+      data: {
+        id: comp._id,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      setCount({
+        bidCount: {
+          win: res?.data?.bidCount?.win,
+          lose: res?.data?.bidCount?.lose,
+        },
+      });
+    });
+  };
+
+  const setModal = (comp, enable) => {
+    console.log("Comp", comp);
+    setCurrentCompetitions(comp);
+    setIsEnabled(enable);
+    setModalOpen(true);
+  };
+
+  const submitWage = async (paymentId) => {
+    setModalOpen(false);
+    console.log("Payment", paymentId);
+    axios({
+      method: "post",
+      url: `${process.env.REACT_APP_API_URL}/wager/setBid`,
+      headers: {},
+      data: {
+        user_id: authUser().user_id,
+        challenge_id: currentCompetitions._id,
+        bid: amount,
+        expected_result: isEnabled ? true : false,
+        stripe_id: paymentId,
+      },
+    });
+    setCurrentCompetitions({});
+  };
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: state.isSelected ? "#725095" : "#725095",
+      background: state.isSelected ? "#F0EFFF" : "white",
+      ":hover": {
+        background: "#F0EFFF",
+      },
+    }),
+  };
+
   return (
     <section className="competitions">
       <div className="competitions__wrapper">
@@ -323,47 +329,7 @@ const Competitions = ({ categories, types }) => {
             onChange={(e) => setSelectedSubCategory(e)}
           />
         </div>
-        {/* <div className="competitions__latest">
-          <h2>Latest Competitions</h2>
-          <div className="competitions__competitions">
-            {data.latest
-              ? data.latest.map((comp) => {
-                  return (
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <Link to={`/competition/${comp._id}`}>
-                        <div className="competitions__competition">
-                          <div className="competitions__competition-main">
-                            <div className="competitions__competition-info">
-                              <p className="competitions__competition-category">
-                                {categories[comp.category].name}
-                              </p>
-                              <p className="competitions__competition-pot">
-                                ${comp.participants.length * comp.wager}
-                              </p>
-                            </div>
-                            <img
-                              className="competitions__competition-image"
-                              src={Bike}
-                              alt="bike"
-                            />
-                          </div>
-                          <p className="competitions__competition-name">
-                            {comp.name}
-                          </p>
-                        </div>
-                      </Link>
-                      <div
-                        className="will_they_win"
-                        onClick={() => setModalOpen(true)}
-                      >
-                        Will they win?
-                      </div>
-                    </div>
-                  );
-                })
-              : ""}
-          </div>
-        </div> */}
+
         <div className="competitions__latest">
           <h2>Latest Competitions</h2>
           <div className="competitions__competitions">
@@ -372,9 +338,8 @@ const Competitions = ({ categories, types }) => {
                   return (
                     <div
                       style={{
-                        width: "25rem",
+                        width: "35rem",
                         boxShadow: "1px 2px 9px rgb(225 220 221)",
-                        margin: "1%",
                       }}
                     >
                       <div className="row">
@@ -396,6 +361,9 @@ const Competitions = ({ categories, types }) => {
                               <h3>
                                 <FaHeart style={{ color: "white" }} />
                               </h3>
+                              <h1 className="text-3xl font-bold underline">
+                                Hello world!
+                              </h1>
                               <h3>
                                 <FaChevronDown style={{ color: "white" }} />
                               </h3>
@@ -500,11 +468,7 @@ const Competitions = ({ categories, types }) => {
                             ></hr>
                           </div>
 
-                          <div
-                            onClick={() => setModal(comp)}
-                            className="mt-4 d-flex justify-content-center text-white"
-                            style={{ cursor: "pointer" }}
-                          >
+                          <div className="mt-4 d-flex justify-content-center text-white">
                             <p className="card-info">
                               <strong>
                                 Will {comp.userDetails[0].userName} Succeed?
@@ -514,6 +478,7 @@ const Competitions = ({ categories, types }) => {
 
                           <div className=" mb-2 d-flex justify-content-center">
                             <button
+                              onClick={() => setModal(comp, true)}
                               style={{ marginRight: "10%" }}
                               type="button"
                               class="btn btn-light btn-circle btn-xl"
@@ -522,6 +487,7 @@ const Competitions = ({ categories, types }) => {
                             </button>
 
                             <button
+                              onClick={() => setModal(comp, false)}
                               type="button"
                               class="btn btn-light btn-circle btn-xl"
                             >
@@ -529,7 +495,7 @@ const Competitions = ({ categories, types }) => {
                             </button>
                           </div>
 
-                          <div className="mb-2 d-flex flex-row justify-content-center">
+                          <div className="mb-5 d-flex flex-row justify-content-center">
                             <p
                               className="circle"
                               style={{ marginTop: "-10px" }}
@@ -552,7 +518,7 @@ const Competitions = ({ categories, types }) => {
                             </p>
                           </div>
 
-                          <div className="d-flex flex-row justify-content-center">
+                          <div className="mb-5 d-flex flex-row justify-content-center">
                             <p
                               className="circle"
                               style={{ marginTop: "-10px" }}
@@ -655,9 +621,8 @@ const Competitions = ({ categories, types }) => {
           <Form>
             <Form.Check
               type="switch"
-              onChange={(value) =>
-                setResult(value.target.value == "on" ? true : false)
-              }
+              disabled
+              defaultChecked={isEnabled}
               id="custom-switch"
               label="Will They Win?"
             />
@@ -668,15 +633,21 @@ const Competitions = ({ categories, types }) => {
             id="bid"
             onChange={(value) => setAmount(value.target.value)}
           />
-          <Button
+          <div>
+            <Elements stripe={stripePromise}>
+              <WagePayment handleSubmit={submitWage} />
+            </Elements>
+          </div>
+
+          {/* <Button
             text="Place Bet"
             type="primary"
             fn={() => {
               setModalOpen(false);
               toast.success("Bet Placed");
-              submitWage(amount, currentCompetitions._id, result);
+              submitWage(amount, currentCompetitions._id, isEnabled);
             }}
-          />
+          /> */}
         </div>
       </Modal>
       <ToastContainer />
