@@ -1,6 +1,6 @@
 import "./Home.scss";
 import PageContent from "../../components/PageContent/PageContent";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/Side-bar-fixed/Side-bar-fixed";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../components/Button/Button";
@@ -90,7 +90,7 @@ const Home = () => {
     <section className="home">
       <Sidebar />
       <PageContent>
-        <div className="home__content">
+        <div className="home__content" style={{ marginLeft: "50px" }}>
           <div className="home__content-main">
             <div className="home__new-post">
               <textarea

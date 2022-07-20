@@ -28,6 +28,7 @@ import {
 } from "@material-ui/core";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import WagePayment from "../../utils/WagePayment";
+import SideBar from "../../components/Side-bar-fixed/Side-bar-fixed";
 
 const Competitions = ({ categories, types }) => {
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -274,6 +275,7 @@ const Competitions = ({ categories, types }) => {
 
   return (
     <section className="competitions">
+      <SideBar />
       <div className="competitions__wrapper">
         <div className="competitions__header">
           <div className="competitions__switch">
@@ -348,6 +350,7 @@ const Competitions = ({ categories, types }) => {
                           style={{
                             backgroundImage:
                               "linear-gradient(to right, #FFCC66, #AE7400)",
+                            padding: "2%",
                           }}
                         >
                           <div
@@ -361,9 +364,7 @@ const Competitions = ({ categories, types }) => {
                               <h3>
                                 <FaHeart style={{ color: "white" }} />
                               </h3>
-                              <h1 className="text-3xl font-bold underline">
-                                Hello world!
-                              </h1>
+
                               <h3>
                                 <FaChevronDown style={{ color: "white" }} />
                               </h3>
@@ -505,7 +506,12 @@ const Competitions = ({ categories, types }) => {
                             <LinearProgress
                               style={{ width: "50%", marginTop: "3px" }}
                               variant="determinate"
-                              value={80}
+                              value={
+                                (comp?.bidCount[0].win /
+                                  (comp?.bidCount[0].win +
+                                    comp?.bidCount[0].lose)) *
+                                100
+                              }
                             />
                             <p
                               className="circle"
@@ -514,7 +520,7 @@ const Competitions = ({ categories, types }) => {
                                 marginRight: "10px",
                               }}
                             >
-                              80
+                              {comp?.bidCount[0].win}
                             </p>
                           </div>
 
@@ -528,7 +534,12 @@ const Competitions = ({ categories, types }) => {
                             <LinearProgress
                               style={{ width: "50%", marginTop: "3px" }}
                               variant="determinate"
-                              value={20}
+                              value={
+                                (comp?.bidCount[0].lose /
+                                  (comp?.bidCount[0].win +
+                                    comp?.bidCount[0].lose)) *
+                                100
+                              }
                             />
                             <p
                               className="circle"
@@ -537,7 +548,7 @@ const Competitions = ({ categories, types }) => {
                                 marginRight: "10px",
                               }}
                             >
-                              20
+                              {comp?.bidCount[0].lose}
                             </p>
                           </div>
                         </div>
